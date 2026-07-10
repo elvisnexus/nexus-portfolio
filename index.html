@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nexus — Full-Stack Developer</title>
+<meta name="description" content="Nexus — Full-stack developer building web and mobile products: marketplaces, fintech, live video, and course platforms." />
+<style>
+  :root {
+    --navy-950: #0c2340;
+    --navy-800: #123152;
+    --navy-700: #1a3d62;
+    --grid-minor: rgba(255,255,255,0.055);
+    --grid-major: rgba(255,255,255,0.10);
+    --paper: #eef4f8;
+    --slate: #93a9bf;
+    --slate-dim: #5f7791;
+    --amber: #f2a53c;
+    --border: rgba(238,244,248,0.14);
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--navy-950);
+    color: var(--paper);
+    font-family: var(--font-sans);
+    background-image:
+      linear-gradient(var(--grid-minor) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  a { color: inherit; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  .crosshair {
+    position: fixed;
+    width: 28px; height: 28px;
+    pointer-events: none;
+    opacity: 0.45;
+    z-index: 5;
+  }
+  .crosshair::before, .crosshair::after {
+    content: "";
+    position: absolute;
+    background: var(--slate-dim);
+  }
+  .crosshair::before { left: 50%; top: 0; width: 1.5px; height: 100%; transform: translateX(-50%); }
+  .crosshair::after { top: 50%; left: 0; height: 1.5px; width: 100%; transform: translateY(-50%); }
+  .crosshair.tl { top: 24px; left: 24px; }
+  .crosshair.tr { top: 24px; right: 24px; }
+
+  /* Hero */
+  .hero {
+    padding: 72px 0 90px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin: 0 0 28px;
+  }
+  .wordmark {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: clamp(56px, 12vw, 130px);
+    letter-spacing: -0.01em;
+    margin: 0;
+    line-height: 1;
+    text-wrap: balance;
+  }
+  .role {
+    font-size: clamp(18px, 2.6vw, 24px);
+    color: var(--slate);
+    margin: 22px 0 0;
+    font-weight: 500;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 32px 0 0;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    border: 1.5px solid rgba(238,244,248,0.3);
+    border-radius: 999px;
+    padding: 8px 18px;
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 44px;
+  }
+  .btn {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 14.5px;
+    text-decoration: none;
+    padding: 13px 26px;
+    border-radius: 8px;
+    transition: filter 0.15s ease, transform 0.1s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--amber); color: #1b1206; }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-ghost { border: 1.5px solid rgba(238,244,248,0.3); color: var(--paper); }
+  .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+  .dim-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 64px;
+    color: var(--amber);
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+  }
+  .dim-line .seg { width: 90px; height: 1.5px; background: var(--amber); position: relative; }
+  .dim-line .seg::before, .dim-line .seg::after {
+    content: ""; position: absolute; top: -6px; width: 1.5px; height: 13px; background: var(--amber);
+  }
+  .dim-line .seg::before { left: 0; }
+  .dim-line .seg::after { right: 0; }
+
+  /* Section shared */
+  section.block { padding: 84px 0; border-bottom: 1px solid var(--border); }
+  .block-head { margin-bottom: 44px; }
+  .block-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin: 0 0 10px;
+  }
+  .block-title {
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 700;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  /* Projects */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .project-card {
+    background: var(--navy-800);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .project-card:hover { border-color: rgba(242,165,60,0.5); transform: translateY(-2px); }
+  .project-name {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .project-desc {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--slate);
+    margin: 0;
+    flex-grow: 1;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .project-tags span {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--slate);
+    background: rgba(238,244,248,0.06);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 4px 8px;
+  }
+  .project-link {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--amber);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .project-link:hover { text-decoration: underline; }
+
+  /* Capabilities */
+  .cap-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+  }
+  .cap-group-label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+    margin: 0 0 12px;
+  }
+  .cap-list { display: flex; flex-direction: column; gap: 8px; }
+  .cap-item {
+    font-size: 15px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .cap-item::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 9px;
+    width: 6px; height: 1.5px;
+    background: var(--amber);
+  }
+
+  footer {
+    padding: 40px 0 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--slate-dim);
+  }
+  footer a { color: var(--slate); text-decoration: none; }
+  footer a:hover { color: var(--amber); }
+  .footer-links { display: flex; gap: 20px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn, .project-card { transition: none; }
+  }
+
+  @media (max-width: 560px) {
+    .crosshair { display: none; }
+    section.block { padding: 56px 0; }
+    .hero { padding: 56px 0 64px; }
+  }
+</style>
+</head>
+<body>
+  <div class="crosshair tl"></div>
+  <div class="crosshair tr"></div>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Full-Stack Developer — Portfolio 2026</p>
+      <h1 class="wordmark">NEXUS</h1>
+      <p class="role">Full-Stack Developer — Web &amp; Mobile</p>
+      <div class="tag-row">
+        <span class="tag">Web</span>
+        <span class="tag">Mobile</span>
+        <span class="tag">AI</span>
+        <span class="tag">Fintech &amp; Payments</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://www.terawork.com/services/profile/26660" target="_blank" rel="noopener">Hire me on Terawork</a>
+        <a class="btn btn-ghost" href="https://github.com/elvisnexus" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="dim-line">
+        <span class="seg"></span>
+        <span>IDEA → LAUNCH, END TO END</span>
+        <span class="seg"></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="block-eyebrow">Selected Work</p>
+        <h2 class="block-title">Five products, shipped and live</h2>
+      </div>
+      <div class="project-grid">
+
+        <article class="project-card">
+          <h3 class="project-name">CityTaska</h3>
+          <p class="project-desc">A trust-based local service marketplace for Africa — customers post requests, providers submit quotes, bookings are confirmed and paid through the platform.</p>
+          <div class="project-tags">
+            <span>Next.js</span><span>Supabase</span><span>Paystack</span><span>Vercel</span>
+          </div>
+          <a class="project-link" href="https://citytaska.com" target="_blank" rel="noopener">Visit live site ↗</a>
+        </article>
+
+        <article class="project-card">
+          <h3 class="project-name">NoWahala</h3>
+          <p class="project-desc">A multi-vendor marketplace with escrow-protected payments, vendor KYC, fraud monitoring, and a full admin back-office for payouts and disputes.</p>
+          <div class="project-tags">
+            <span>React</span><span>Supabase</span><span>Paystack</span><span>Flutterwave</span>
+          </div>
+          <a class="project-link" href="https://oyanowahala.com" target="_blank" rel="noopener">Visit live site ↗</a>
+        </article>
+
+        <article class="project-card">
+          <h3 class="project-name">Rotary Club of Oregbeni</h3>
+          <p class="project-desc">A club-management platform with live video meeting rooms, dues and contribution payments, and a full member/admin portal replacing manual administration.</p>
+          <div class="project-tags">
+            <span>React</span><span>Supabase</span><span>Daily.co</span><span>Paystack</span>
+          </div>
+          <a class="project-link" href="https://rotarycluboforegbeni.vercel.app" target="_blank" rel="noopener">Visit live site ↗</a>
+        </article>
+
+        <article class="project-card">
+          <h3 class="project-name">Koursa</h3>
+          <p class="project-desc">A multi-tenant course platform — instructors sell video courses with quizzes and certificates, organizations bulk-enroll teams, and live classes run alongside on-demand lessons.</p>
+          <div class="project-tags">
+            <span>Next.js</span><span>Prisma</span><span>Stripe</span><span>Mux</span><span>Daily.co</span>
+          </div>
+          <a class="project-link" href="https://koursalearn.com" target="_blank" rel="noopener">Visit live site ↗</a>
+        </article>
+
+        <article class="project-card">
+          <h3 class="project-name">MicroVault</h3>
+          <p class="project-desc">A digital microfinance platform for Nigerian lending institutions — loan management, repayment tracking, savings accounts, and CBN-compliant audit reporting.</p>
+          <div class="project-tags">
+            <span>Full-Stack</span><span>Fintech</span><span>Compliance</span>
+          </div>
+          <a class="project-link" href="https://microvaultmfi.com" target="_blank" rel="noopener">Visit live site ↗</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="capabilities">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="block-eyebrow">Capabilities</p>
+        <h2 class="block-title">What I build with</h2>
+      </div>
+      <div class="cap-groups">
+        <div>
+          <p class="cap-group-label">Core</p>
+          <div class="cap-list">
+            <div class="cap-item">Full-Stack Development</div>
+            <div class="cap-item">Web Application Development</div>
+            <div class="cap-item">Mobile App Development</div>
+          </div>
+        </div>
+        <div>
+          <p class="cap-group-label">Payments &amp; Fintech</p>
+          <div class="cap-list">
+            <div class="cap-item">Paystack</div>
+            <div class="cap-item">Flutterwave</div>
+            <div class="cap-item">Stripe</div>
+          </div>
+        </div>
+        <div>
+          <p class="cap-group-label">Realtime &amp; Video</p>
+          <div class="cap-list">
+            <div class="cap-item">Live Video (Daily.co)</div>
+            <div class="cap-item">On-Demand Video (Mux)</div>
+          </div>
+        </div>
+        <div>
+          <p class="cap-group-label">Intelligence &amp; Backend</p>
+          <div class="cap-list">
+            <div class="cap-item">AI Integration</div>
+            <div class="cap-item">Backend &amp; API Development</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer>
+      <span>NEXUS — Built &amp; deployed 2026</span>
+      <div class="footer-links">
+        <a href="https://github.com/elvisnexus" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.terawork.com/services/profile/26660" target="_blank" rel="noopener">Terawork</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
