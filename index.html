@@ -61,6 +61,15 @@
     text-align: center;
     border-bottom: 1px solid var(--border);
   }
+  .avatar {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--amber);
+    padding: 4px;
+    margin: 0 0 24px;
+  }
   .eyebrow {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -78,11 +87,25 @@
     line-height: 1;
     text-wrap: balance;
   }
+  .real-name {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--slate);
+    margin: 16px 0 0;
+  }
   .role {
     font-size: clamp(18px, 2.6vw, 24px);
     color: var(--slate);
-    margin: 22px 0 0;
+    margin: 10px 0 0;
     font-weight: 500;
+  }
+  .bio {
+    max-width: 52ch;
+    margin: 24px auto 0;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--slate);
   }
 
   .tag-row {
@@ -273,9 +296,12 @@
 
   <header class="hero">
     <div class="wrap">
+      <img class="avatar" src="assets/profile.jpg" alt="Portrait of Elvis Nosakhare" width="108" height="108" />
       <p class="eyebrow">Full-Stack Developer — Portfolio 2026</p>
       <h1 class="wordmark">NEXUS</h1>
+      <p class="real-name">Elvis Nosakhare</p>
       <p class="role">Full-Stack Developer — Web &amp; Mobile</p>
+      <p class="bio">I'm a Nigeria-based full-stack developer who ships real products end-to-end — marketplaces, fintech platforms, live video, and course platforms — from database design to production deploy.</p>
       <div class="tag-row">
         <span class="tag">Web</span>
         <span class="tag">Mobile</span>
