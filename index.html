@@ -252,6 +252,86 @@
   }
   .project-link:hover { text-decoration: underline; }
 
+  /* Track Record */
+  .timeline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 0;
+    margin: 36px 0 16px;
+  }
+  .timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 0 22px;
+  }
+  .timeline-year {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    color: var(--amber);
+  }
+  .timeline-role {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--paper);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .timeline-connector {
+    width: 40px;
+    height: 1.5px;
+    background: rgba(238,244,248,0.25);
+    flex-shrink: 0;
+  }
+  .timeline-org {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--slate);
+    margin: 0 0 56px;
+  }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+    text-align: center;
+  }
+  .stat-number {
+    display: block;
+    font-weight: 800;
+    font-size: clamp(30px, 4.5vw, 42px);
+    color: var(--paper);
+  }
+  .stat-label {
+    display: block;
+    font-size: 13.5px;
+    color: var(--slate);
+    margin-top: 8px;
+    line-height: 1.5;
+    max-width: 26ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .track-note {
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--slate-dim);
+    margin: 40px 0 0;
+  }
+
+  @media (max-width: 700px) {
+    .timeline { flex-direction: column; }
+    .timeline-connector { width: 1.5px; height: 22px; }
+  }
+  @media (max-width: 640px) {
+    .stat-row { grid-template-columns: 1fr; }
+  }
+
   /* Capabilities */
   .cap-groups {
     display: grid;
@@ -416,6 +496,54 @@
     </div>
   </section>
 
+  <section class="block" id="track-record">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="block-eyebrow">Track Record</p>
+        <h2 class="block-title">Built to lead, not just to code</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-year">2019</span>
+          <span class="timeline-role">IT Support</span>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-item">
+          <span class="timeline-year">&nbsp;</span>
+          <span class="timeline-role">Full-Stack Developer (Laravel)</span>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-item">
+          <span class="timeline-year">&nbsp;</span>
+          <span class="timeline-role">IT Manager</span>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-item">
+          <span class="timeline-year">2023 – Present</span>
+          <span class="timeline-role">IT Director</span>
+        </div>
+      </div>
+      <p class="timeline-org">Standard Life — Nigeria &amp; Rwanda</p>
+
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Enterprise systems shipped in 3 years — micro-insurance, assets portal, core-banking &amp; digital loans</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">1,000+</span>
+          <span class="stat-label">Loans processed in the first 3 months after leading Rwanda's first digital loans app to launch</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">2022</span>
+          <span class="stat-label">Best Staff award, Standard Life</span>
+        </div>
+      </div>
+      <p class="track-note">Trained in Agile DSDM and Jira; currently pursuing PMP.</p>
+    </div>
+  </section>
+
   <section class="block" id="capabilities">
     <div class="wrap">
       <div class="block-head">
@@ -451,6 +579,15 @@
           <div class="cap-list">
             <div class="cap-item">AI Integration</div>
             <div class="cap-item">Backend &amp; API Development</div>
+          </div>
+        </div>
+        <div>
+          <p class="cap-group-label">Leadership &amp; Delivery</p>
+          <div class="cap-list">
+            <div class="cap-item">Team Leadership</div>
+            <div class="cap-item">Agile Delivery (DSDM)</div>
+            <div class="cap-item">Jira &amp; Sprint Planning</div>
+            <div class="cap-item">PMP (in progress)</div>
           </div>
         </div>
       </div>
