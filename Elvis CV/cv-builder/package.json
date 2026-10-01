@@ -1,0 +1,14 @@
+{
+  "name": "cv-builder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Generates Elvis_Nosakhare_CV_Technical_Lead.docx",
+  "main": "build_cv.js",
+  "scripts": {
+    "build": "node build_cv.js \"../Elvis_Nosakhare_CV_Technical_Lead.docx\""
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "docx": "^9.7.1"
+  }
+}
