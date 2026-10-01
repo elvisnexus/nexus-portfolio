@@ -367,6 +367,34 @@
     background: var(--amber);
   }
 
+  /* Contact */
+  .contact-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 720px;
+  }
+  .contact-card {
+    display: block;
+    background: var(--navy-800);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .contact-card:hover { border-color: rgba(242,165,60,0.5); transform: translateY(-2px); }
+  .contact-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+    margin-bottom: 8px;
+  }
+  .contact-value { font-size: 17px; font-weight: 600; color: var(--paper); overflow-wrap: anywhere; }
+
   footer {
     padding: 40px 0 60px;
     display: flex;
@@ -428,6 +456,7 @@
       </div>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://www.terawork.com/services/profile/26660" target="_blank" rel="noopener">Hire me on Terawork</a>
+        <a class="btn btn-ghost" href="mailto:elvisnosakhare@gmail.com">Email me</a>
         <a class="btn btn-ghost" href="https://github.com/elvisnexus" target="_blank" rel="noopener">GitHub</a>
       </div>
       <p class="cta-note">Project repos are private — available on request</p>
@@ -602,6 +631,25 @@
             <div class="cap-item">PMP (in progress)</div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="block-head">
+        <p class="block-eyebrow">Contact</p>
+        <h2 class="block-title">Let's talk</h2>
+      </div>
+      <div class="contact-list">
+        <a class="contact-card" href="mailto:elvisnosakhare@gmail.com">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">elvisnosakhare@gmail.com</span>
+        </a>
+        <a class="contact-card" href="tel:+2348134386721">
+          <span class="contact-label">Phone / WhatsApp</span>
+          <span class="contact-value">+234 813 438 6721</span>
+        </a>
       </div>
     </div>
   </section>
